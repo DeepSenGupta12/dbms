@@ -1,0 +1,54 @@
+1. Create the employee table with the following columns: (Emp_id, Emp_name,
+Gender, Designation, Department, Tax , Netpay , Basic_pay )
+CREATE TABLE employee1 (
+emp_id INT,
+emp_name VARCHAR(100),
+gender VARCHAR(10),
+designation VARCHAR(50),
+department VARCHAR(50),
+tax DECIMAL(10, 2),
+netpay DECIMAL(10, 2),
+basic_pay DECIMAL(10, 2)
+);
+
+2. Insert necessary records in the employee table.
+INSERT INTO employee1 (emp_id, emp_name, gender, designation, department,
+basic_pay) VALUES (1, 'Alice', 'Female', 'Analyst', 'Computer Science', 45000);
+INSERT INTO employee1 (emp_id, emp_name, gender, designation, department,
+basic_pay) VALUES (2, 'Bob', 'Male', 'Manager', 'History', 55000);
+INSERT INTO employee1 (emp_id, emp_name, gender, designation, department,
+basic_pay) VALUES (3, 'Charlie', 'Male', 'Developer', 'Computer Science', 30000);
+INSERT INTO employee1 (emp_id, emp_name, gender, designation, department,
+basic_pay) VALUES (4, 'Diana', 'Female', 'Analyst', 'History', 75000);
+
+3. Include a new column House_rent_allowance.
+ALTER TABLE employee1 ADD House_rent_allowance DECIMAL(10,2);
+
+4. Using alter command, add atleast TWO constraints for the employee table, that
+includes at least one primary key and one check constraint.
+ALTER TABLE employee1 add primary key(emp_id);
+
+ALTER TABLE employee ADD CONSTRAINT salary CHECK (Basic_pay > 0);
+
+5. Calculate H_R_A as 25% of basic salary and update the table.
+UPDATE employee SET House_rent_allowance = 0.25 * Basic_pay;
+
+6. Calculate the tax of each employee which is 10% of basic salary and update the
+table.
+UPDATE employee SET Tax = 0.10 * Basic_pay;
+
+7. Calculate net_pay using the formula (basic_pay + H_R_A - tax) and update the
+table.
+UPDATE employee SET Netpay = Basic_pay + House_rent_allowance - Tax;
+
+8. Calculate an increase of 5% in salaries (basic_pay) for computer science
+department employees and update the table.
+UPDATE employee SET Basic_pay = Basic_pay * 1.05 WHERE Department =
+'Computer Science'
+
+9. Display all the employees whose total salary is greater than 50000.
+SELECT * FROM employee WHERE Netpay > 50000;
+
+10. Display all the employees who belong to the computer science department
+SELECT * FROM employee WHERE Department = 'Computer Science';
+
