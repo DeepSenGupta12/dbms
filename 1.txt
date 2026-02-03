@@ -1,0 +1,67 @@
+using System;
+
+class Student
+{
+    string name, courseCode, subject, email, phone;
+    int semester;
+
+    // Default constructor
+    public Student()
+    {
+        name = courseCode = subject = email = phone = null;
+        semester = 0;
+    }
+
+    // Constructor with name and semester
+    public Student(string n, int sem)
+    {
+        name = n;
+        semester = sem;
+        courseCode = subject = email = phone = null;
+    }
+
+    // Constructor with all details
+    public Student(string n, int sem, string ccode, string sub, string mail, string ph)
+    {
+        name = n;
+        semester = sem;
+        courseCode = ccode;
+        subject = sub;
+        email = mail;
+        phone = ph;
+    }
+
+    // Display method
+    public void Display()
+    {
+        Console.WriteLine("\nName : " + name);
+        Console.WriteLine("Semester : " + semester);
+        Console.WriteLine("Course : " + courseCode);
+        Console.WriteLine("Subject : " + subject);
+        Console.WriteLine("Email : " + email);
+        Console.WriteLine("Phone : " + phone);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Student s1 = new Student();
+        Student s2 = new Student("Radha B S", 3);
+        Student s3 = new Student(
+            "Chandan M P",
+            3,
+            "MCA302",
+            "Dot Net",
+            "chandan@gmail.com",
+            "6363991933"
+        );
+
+        s1.Display();
+        s2.Display();
+        s3.Display();
+
+        Console.ReadLine();
+    }
+}

@@ -1,0 +1,66 @@
+using System;
+
+class ExceptionDemo
+{
+    static int ReadNumber(int start, int end)
+    {
+        int number;
+
+        try
+        {
+            number = int.Parse(Console.ReadLine());
+
+            if (number <= start || number >= end)
+            {
+                throw new ArgumentOutOfRangeException(
+                    $"Number must be in the range ({start}, {end})"
+                );
+            }
+        }
+        catch (FormatException)
+        {
+            throw new FormatException(
+                "Invalid input! Please enter an integer value."
+            );
+        }
+
+        return number;
+    }
+
+    static void Main(string[] args)
+    {
+        int[] numbers = new int[10];
+        int start = 1;
+        int end = 100;
+
+        Console.WriteLine(
+            "Enter 10 integers such that 1 < a1 < a2 < ... < a10 < 100"
+        );
+
+        for (int i = 0; i < 10; i++)
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.Write($"Enter number {i + 1}: ");
+                    numbers[i] = ReadNumber(start, end);
+                    start = numbers[i];
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+        }
+
+        Console.WriteLine("\nSuccessfully entered numbers:");
+        foreach (int num in numbers)
+        {
+            Console.Write(num + " ");
+        }
+
+        Console.ReadLine();
+    }
+}

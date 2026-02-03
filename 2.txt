@@ -1,0 +1,39 @@
+using System;
+
+delegate string StrMyDel(string s);
+
+class TestDelegate
+{
+    public string ChangeCase(string s)
+    {
+        return s.ToUpper();
+    }
+
+    public string Reverse(string s)
+    {
+        char[] c = s.ToCharArray();
+        Array.Reverse(c);
+        return new string(c);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        TestDelegate obj = new TestDelegate();
+
+        StrMyDel d = obj.ChangeCase;
+        d += obj.Reverse;
+
+        Console.Write("Enter String: ");
+        string input = Console.ReadLine();
+
+        foreach (StrMyDel item in d.GetInvocationList())
+        {
+            Console.WriteLine(item(input));
+        }
+
+        Console.ReadLine();
+    }
+}
