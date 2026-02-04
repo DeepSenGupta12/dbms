@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FSD Lab: JSON to Table</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 60%;
+        margin: auto;
+      }
+      th,
+      td {
+        border: 1px solid #333;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background: #f2f2f2;
+      }
+      h2 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JSON Data Rendered in Table</h2>
+    <table id="data-table"></table>
+
+    <script>
+      const d = [
+          { name: "Alice", age: 25, city: "London" },
+          { name: "Bob", age: 30, city: "Paris" },
+          { name: "Carol", age: 22, city: "New York" },
+        ],
+        t = document.getElementById("data-table");
+      t.innerHTML =
+        `<tr>${Object.keys(d[0])
+          .map((k) => `<th>${k.toUpperCase()}</th>`)
+          .join("")}</tr>` +
+        d
+          .map(
+            (o) =>
+              `<tr>${Object.values(o)
+                .map((v) => `<td>${v}</td>`)
+                .join("")}</tr>`,
+          )
+          .join("");
+    </script>
+  </body>
+</html>
